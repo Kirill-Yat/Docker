@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  mariadb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mariadb
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: mariadb
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+   db_data:
+
+
